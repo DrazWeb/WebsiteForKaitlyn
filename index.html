@@ -65,6 +65,7 @@ bottom:-10px;
 font-size:20px;
 animation:float 8s infinite ease-in;
 opacity:0.3;
+cursor:pointer;
 }
 
 @keyframes float{
@@ -92,15 +93,43 @@ margin:auto;
 line-height:1.6;
 }
 
+/* SECRET POPUP */
+
+.secret-popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px 40px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.25);
+font-size:22px;
+z-index:999;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="heart" style="left:15%">💗</div>
-<div class="heart" style="left:35%;animation-duration:9s">💗</div>
-<div class="heart" style="left:55%;animation-duration:7s">💗</div>
-<div class="heart" style="left:75%;animation-duration:10s">💗</div>
+<div class="heart" onclick="heartClick()" style="left:15%">💗</div>
+<div class="heart" onclick="heartClick()" style="left:35%;animation-duration:9s">💗</div>
+<div class="heart" onclick="heartClick()" style="left:55%;animation-duration:7s">💗</div>
+<div class="heart" onclick="heartClick()" style="left:75%;animation-duration:10s">💗</div>
+
+<!-- SECRET HEART MESSAGE -->
+
+<div id="heartSecret" class="secret-popup">
+
+You found another secret 💗
+
+<br><br>
+
+You are my favorite person in the universe.
+
+</div>
 
 <!-- PAGE 1 -->
 
@@ -325,6 +354,22 @@ if(loveCount>=10){
 document.getElementById("gameStatus").innerHTML="Good girl 😌"
 
 document.getElementById("finalButton").style.display="block"
+
+}
+
+}
+
+/* HEART EASTER EGG */
+
+let heartCount = 0
+
+function heartClick(){
+
+heartCount++
+
+if(heartCount >= 20){
+
+document.getElementById("heartSecret").style.display = "block"
 
 }
 
