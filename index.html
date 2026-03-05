@@ -93,7 +93,50 @@ margin:auto;
 line-height:1.6;
 }
 
-/* SECRET POPUP */
+.backButton{
+position:fixed;
+top:20px;
+left:20px;
+font-size:26px;
+cursor:pointer;
+background:white;
+width:40px;
+height:40px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+z-index:1000;
+}
+
+.counterButton{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#ff3385;
+color:white;
+padding:10px 18px;
+border-radius:20px;
+font-size:14px;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+z-index:1000;
+}
+
+.counterPopup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px 40px;
+border-radius:20px;
+box-shadow:0 20px 50px rgba(0,0,0,0.3);
+font-size:20px;
+z-index:2000;
+}
 
 .secret-popup{
 display:none;
@@ -114,12 +157,27 @@ z-index:999;
 
 <body>
 
+<div class="backButton" onclick="goBack()">←</div>
+
+<div class="counterButton" onclick="toggleCounter()">Time Counter</div>
+
+<div id="counterPopup" class="counterPopup">
+
+<h3>Time since we met 💗</h3>
+
+<p style="font-size:16px;margin-bottom:15px;">
+Best moment of my life:<br>
+January 8th, 2026 — 10:53 PM
+</p>
+
+<p id="timeTogether"></p>
+
+</div>
+
 <div class="heart" onclick="heartClick()" style="left:15%">💗</div>
 <div class="heart" onclick="heartClick()" style="left:35%;animation-duration:9s">💗</div>
 <div class="heart" onclick="heartClick()" style="left:55%;animation-duration:7s">💗</div>
 <div class="heart" onclick="heartClick()" style="left:75%;animation-duration:10s">💗</div>
-
-<!-- SECRET HEART MESSAGE -->
 
 <div id="heartSecret" class="secret-popup">
 
@@ -187,6 +245,21 @@ You are my favorite person in the universe.
 <p>Good night my love. Sleep peacefully. I'll talk to you tomorrow ❤️</p>
 </div>
 
+<button onclick="toggle('driving')">Click if you passed your driving test</button>
+
+<div id="driving" style="display:none">
+
+<img id="driveImage" src="drivinggf.png" width="220">
+
+<p>
+Good job Kaitlyn! 🚗💗<br><br>
+I'm really proud of you.<br>
+Passing your driving test is a big step and you did it.<br>
+Future road trips together unlocked.
+</p>
+
+</div>
+
 <br>
 
 <button onclick="nextPage('page4')">Next Page</button>
@@ -231,7 +304,7 @@ You are my favorite person in the universe.
 
 </div>
 
-<!-- PAGE 6 GAME -->
+<!-- PAGE 6 -->
 
 <div id="page6" class="section">
 
@@ -289,54 +362,44 @@ I love you like crazy.
 
 </div>
 
-<!-- SECRET PAGE -->
-
-<div id="secretPage" class="section">
-
-<h2>Freshly Pressed Orange Juice</h2>
-
-<br>
-
-<img src="freshlypressed.jpg" width="260" class="show">
-
-</div>
-
-<!-- SECRET BUTTON -->
-
-<div class="hidden-link" onclick="nextPage('secretPage')">
-secret section
-</div>
-
 <script>
 
+let pageHistory=[]
+
 function nextPage(page){
+
+let current=document.querySelector(".section.active")
+
+if(current) pageHistory.push(current.id)
+
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+
 setTimeout(()=>{
 document.getElementById(page).classList.add('active')
 },100)
+
+}
+
+function goBack(){
+
+if(pageHistory.length===0) return
+
+let previous=pageHistory.pop()
+
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+
+document.getElementById(previous).classList.add('active')
+
 }
 
 function toggle(id){
 
 let el=document.getElementById(id)
-let img=document.getElementById("mainImage")
 
 if(el.style.display==="none"){
-
 el.style.display="block"
-
-if(img){
-setTimeout(()=>{
-img.classList.add("show")
-},100)
-}
-
 }else{
-
 el.style.display="none"
-
-if(img) img.classList.remove("show")
-
 }
 
 }
@@ -359,19 +422,64 @@ document.getElementById("finalButton").style.display="block"
 
 }
 
-/* HEART EASTER EGG */
-
-let heartCount = 0
+let heartCount=0
 
 function heartClick(){
 
 heartCount++
 
-if(heartCount >= 20){
+if(heartCount>=20){
 
-document.getElementById("heartSecret").style.display = "block"
+document.getElementById("heartSecret").style.display="block"
 
 }
+
+}
+
+const startDate=new Date("2026-01-08T22:53:00")
+
+function toggleCounter(){
+
+let popup=document.getElementById("counterPopup")
+
+if(popup.style.display==="block"){
+popup.style.display="none"
+}else{
+popup.style.display="block"
+updateCounter()
+}
+
+}
+
+function updateCounter(){
+
+setInterval(()=>{
+
+let now=new Date()
+let diff=now-startDate
+
+let seconds=Math.floor(diff/1000)
+let minutes=Math.floor(seconds/60)
+let hours=Math.floor(minutes/60)
+let days=Math.floor(hours/24)
+let months=Math.floor(days/30)
+let years=Math.floor(months/12)
+
+seconds%=60
+minutes%=60
+hours%=24
+days%=30
+months%=12
+
+document.getElementById("timeTogether").innerHTML=
+years+" years "+
+months+" months "+
+days+" days "+
+hours+" hours "+
+minutes+" minutes "+
+seconds+" seconds"
+
+},1000)
 
 }
 
