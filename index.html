@@ -3,155 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Level 2 - Kaitlyn</title>
+<title>Kaitlyn</title>
 
 <style>
-body {
-  margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg,#ffe6f5,#ffccd9);
-  text-align:center;
-  color:#4a0033;
-  overflow-x:hidden;
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,#ffe6f5,#ffccd9);
+text-align:center;
+color:#4a0033;
+overflow-x:hidden;
 }
 
-/* Sections */
-.section {
-  opacity:0;
-  transform:translateY(30px);
-  transition:opacity 0.6s ease, transform 0.6s ease;
-  display:none;
-  padding:80px 20px;
+/* sections */
+
+.section{
+opacity:0;
+transform:translateY(30px);
+transition:0.6s;
+display:none;
+padding:80px 20px;
 }
 
-.active {
-  display:block;
-  opacity:1;
-  transform:translateY(0);
+.active{
+display:block;
+opacity:1;
+transform:translateY(0);
 }
 
-/* Buttons */
-button {
-  padding:14px 30px;
-  margin:12px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(45deg,#ff66a3,#ff3385);
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 5px 15px rgba(255,0,120,0.25);
+/* buttons */
+
+button{
+padding:14px 30px;
+margin:12px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff66a3,#ff3385);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 5px 15px rgba(255,0,120,0.25);
 }
 
-button:hover {
-  transform:scale(1.08);
-  box-shadow:0 10px 25px rgba(255,0,120,0.4);
+button:hover{
+transform:scale(1.08);
+box-shadow:0 10px 25px rgba(255,0,120,0.4);
 }
 
-/* Hidden link */
-.hidden-link {
-  margin-top:40px;
-  font-size:12px;
-  opacity:0.25;
-  cursor:pointer;
-  transition:0.3s;
+/* hidden link */
+
+.hidden-link{
+margin-top:40px;
+font-size:12px;
+opacity:0.25;
+cursor:pointer;
 }
 
-.hidden-link:hover {
-  opacity:0.6;
+.hidden-link:hover{
+opacity:0.6;
 }
 
-/* Floating hearts */
-.heart {
-  position:fixed;
-  bottom:-10px;
-  font-size:20px;
-  animation:float 8s infinite ease-in;
-  opacity:0.3;
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:float 8s infinite ease-in;
+opacity:0.3;
 }
 
-@keyframes float {
-  0% {transform:translateY(0);}
-  100% {transform:translateY(-110vh);}
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);}
 }
 
-/* Image */
-img {
-  border-radius:20px;
-  box-shadow:0 0 20px rgba(255,0,120,0.4);
-  opacity:0;
-  transform:scale(0.95);
-  transition:opacity 0.6s ease, transform 0.6s ease;
+/* image */
+
+img{
+border-radius:20px;
+box-shadow:0 0 20px rgba(255,0,120,0.4);
+opacity:0;
+transform:scale(0.95);
+transition:0.6s;
 }
 
-img.show {
-  opacity:1;
-  transform:scale(1);
+img.show{
+opacity:1;
+transform:scale(1);
 }
+
+.big-love{
+font-size:28px;
+max-width:700px;
+margin:auto;
+line-height:1.6;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts -->
-<div class="heart" style="left:15%;">💗</div>
-<div class="heart" style="left:35%; animation-duration:9s;">💗</div>
-<div class="heart" style="left:55%; animation-duration:7s;">💗</div>
-<div class="heart" style="left:75%; animation-duration:10s;">💗</div>
+<!-- floating hearts -->
+
+<div class="heart" style="left:15%">💗</div>
+<div class="heart" style="left:35%;animation-duration:9s">💗</div>
+<div class="heart" style="left:55%;animation-duration:7s">💗</div>
+<div class="heart" style="left:75%;animation-duration:10s">💗</div>
+
 
 <!-- PAGE 1 -->
+
 <div id="page1" class="section active">
+
 <h1>🔐 Access Granted</h1>
 <h2>Kaitlyn</h2>
+
 <button onclick="nextPage('page2')">Enter</button>
+
 </div>
 
+
 <!-- PAGE 2 -->
+
 <div id="page2" class="section">
+
 <h2>Fake Terms & Conditions</h2>
+
 <p>By entering this website you agree to:</p>
+
 <p>• Accept random hugs in the future</p>
 <p>• Allow rematch races</p>
 <p>• Accept to be my wife in the future 😌</p>
+
 <button onclick="nextPage('page3')">I Accept</button>
+
 </div>
 
+
 <!-- PAGE 3 -->
+
 <div id="page3" class="section">
+
 <h2>Welcome to Level 2</h2>
 <p>You unlocked something not everyone gets to see.</p>
 
 <button onclick="toggle('miss')">Click if you miss me</button>
-<div id="miss" style="display:none;">
-<img id="mainImage" src="ME.png" width="220"><br><br>
+
+<div id="miss" style="display:none">
+
+<img id="mainImage" src="ME.png" width="220">
+
 <p>I miss you too, Kaitlyn. Probably more than you think.</p>
+
 </div>
 
 <button onclick="toggle('smile')">Click if you're smiling right now</button>
-<div id="smile" style="display:none;">
+
+<div id="smile" style="display:none">
 <p>Aww… you're so cute when you're smiling 😊</p>
 </div>
 
 <button onclick="toggle('bed')">Click if you're in bed</button>
-<div id="bed" style="display:none;">
+
+<div id="bed" style="display:none">
 <p>Good night my love. Sleep peacefully. I'll talk to you tomorrow ❤️</p>
 </div>
 
 <br>
+
 <button onclick="nextPage('page4')">Next Page</button>
+
 </div>
+
 
 <!-- PAGE 4 -->
+
 <div id="page4" class="section">
+
 <h2>Why this exists</h2>
+
 <p>Because long distance shouldn't feel boring.</p>
+
 <button onclick="nextPage('page5')">Next Page</button>
+
 </div>
 
+
 <!-- PAGE 5 -->
+
 <div id="page5" class="section">
+
 <h2>Future Missions</h2>
+
 <p>☐ Late night walk</p>
 <p>☐ Getting officially married</p>
 <p>☑ Living together happily forever</p>
@@ -159,79 +206,147 @@ img.show {
 <p>☐ Rematch race</p>
 
 <h3>Mini Surprise</h3>
+
 <p>Press play 👇</p>
 
-<audio controls style="margin-top:15px;">
+<audio controls>
 <source src="LOVE.m4a" type="audio/mp4">
 </audio>
 
 <br><br>
+
 <button onclick="nextPage('page6')">Next Page</button>
+
 </div>
 
-<!-- PAGE 6 -->
+
+<!-- PAGE 6 GAME -->
+
 <div id="page6" class="section">
-<h2>You found the hidden level.</h2>
-<p>Press the space bar 10 times in under 5 seconds.</p>
+
+<h2>Hidden Level</h2>
+
+<p>Press the button 10 times</p>
+
+<button onclick="loveClick()">I Love You</button>
+
+<p id="loveCounter">0 / 10</p>
+
 <p id="gameStatus"></p>
-<button onclick="startGame()">Start</button>
+
+<div id="finalButton" style="display:none">
+<button onclick="nextPage('page7')">Final Page</button>
 </div>
+
+</div>
+
+
+<!-- FINAL PAGE -->
+
+<div id="page7" class="section">
+
+<h1>For Kaitlyn 💗</h1>
+
+<p class="big-love">
+
+I know this little website isn't something huge.
+
+But I really wanted to make it for you.
+
+Just a small place on the internet
+that reminds you how much you mean to me.
+
+Kaitlyn, I love you more than words can really explain.
+
+I love talking with you, laughing with you,
+and imagining the future with you.
+
+And if life lets me choose,
+I would love to spend that future with you.
+
+Living together.
+Building a life together.
+And just being happy together.
+
+This project may be small,
+but the feelings behind it are not.
+
+I love you like crazy.
+
+❤️
+
+</p>
+
+</div>
+
 
 <div class="hidden-link" onclick="nextPage('page6')">
 secret section
 </div>
 
+
 <script>
-function nextPage(page) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  setTimeout(() => {
-    document.getElementById(page).classList.add('active');
-  }, 100);
+
+/* page system */
+
+function nextPage(page){
+
+document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+
+setTimeout(()=>{
+document.getElementById(page).classList.add('active')
+},100)
+
 }
 
-function toggle(id) {
-  var el = document.getElementById(id);
-  var img = document.getElementById("mainImage");
+/* toggle sections */
 
-  if(el.style.display === "none"){
-    el.style.display = "block";
-    if(img) {
-      setTimeout(() => {
-        img.classList.add("show");
-      }, 100);
-    }
-  } else {
-    el.style.display = "none";
-    if(img) img.classList.remove("show");
-  }
+function toggle(id){
+
+let el=document.getElementById(id)
+let img=document.getElementById("mainImage")
+
+if(el.style.display==="none"){
+
+el.style.display="block"
+
+if(img){
+setTimeout(()=>{
+img.classList.add("show")
+},100)
 }
 
-let count = 0;
-let startTime;
-let gameActive = false;
+}else{
 
-function startGame(){
-  count = 0;
-  gameActive = true;
-  startTime = new Date().getTime();
-  document.getElementById("gameStatus").innerHTML = "GO!";
+el.style.display="none"
+
+if(img) img.classList.remove("show")
+
 }
 
-document.addEventListener("keydown", function(e){
-  if(gameActive && e.code === "Space"){
-    count++;
-    if(count >= 10){
-      let endTime = new Date().getTime();
-      let time = (endTime - startTime)/1000;
-      if(time <= 5){
-        document.getElementById("gameStatus").innerHTML = "Good girl 😌";
-      } else {
-        document.getElementById("gameStatus").innerHTML = "Too slow... try again.";
-      }
-      gameActive = false;
-    }
-  }
-});
+}
+
+
+/* love game */
+
+let loveCount=0
+
+function loveClick(){
+
+loveCount++
+
+document.getElementById("loveCounter").innerHTML=loveCount+" / 10"
+
+if(loveCount>=10){
+
+document.getElementById("gameStatus").innerHTML="Good girl 😌"
+
+document.getElementById("finalButton").style.display="block"
+
+}
+
+}
+
 </script>
 
 </body>
