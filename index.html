@@ -7,136 +7,159 @@
 
 <style>
 body{
-margin:0;
-font-family:'Segoe UI',sans-serif;
-background:linear-gradient(135deg,#ffe6f5,#ffccd9);
-text-align:center;
-color:#4a0033;
-overflow-x:hidden;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ffe6f5,#ffccd9);
+  text-align:center;
+  color:#4a0033;
+  overflow-x:hidden;
 }
 
 .section{
-opacity:0;
-transform:translateY(30px);
-transition:0.6s;
-display:none;
-padding:80px 20px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.6s;
+  display:none;
+  padding:80px 20px;
+  text-align:center; /* centrage des contenus */
 }
 
 .active{
-display:block;
-opacity:1;
-transform:translateY(0);
+  display:block;
+  opacity:1;
+  transform:translateY(0);
+  position:relative;
+  z-index:1; /* assure que la flèche reste cliquable */
 }
 
 button{
-padding:14px 30px;
-margin:12px;
-border:none;
-border-radius:30px;
-background:linear-gradient(45deg,#ff66a3,#ff3385);
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.3s;
-box-shadow:0 5px 15px rgba(255,0,120,0.25);
+  padding:14px 30px;
+  margin:12px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#ff66a3,#ff3385);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 5px 15px rgba(255,0,120,0.25);
 }
 
 button:hover{
-transform:scale(1.08);
-box-shadow:0 10px 25px rgba(255,0,120,0.4);
+  transform:scale(1.08);
+  box-shadow:0 10px 25px rgba(255,0,120,0.4);
 }
 
 /* back arrow */
 .back{
-position:fixed;
-top:20px;
-left:20px;
-font-size:26px;
-cursor:pointer;
-opacity:0.6;
+  position:fixed;
+  top:20px;
+  left:20px;
+  font-size:26px;
+  cursor:pointer;
+  opacity:0.6;
+  z-index:999;
 }
 .back:hover{ opacity:1; }
 
 /* timer */
 #timeBtn{
-position:fixed;
-bottom:10px;
-right:10px;
-font-size:12px;
-opacity:0.6;
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  font-size:12px;
+  opacity:0.6;
+  z-index:998;
 }
 #timePopup{
-display:none;
-position:fixed;
-bottom:60px;
-right:10px;
-background:white;
-padding:15px;
-border-radius:15px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-font-size:14px;
+  display:none;
+  position:fixed;
+  bottom:60px;
+  right:10px;
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  font-size:14px;
+  text-align:center;
+  max-width:200px;
+  z-index:998;
 }
 
 /* secret button */
 #secretBtn{
-position:fixed;
-bottom:10px;
-left:10px;
-font-size:10px;
-opacity:0.1;
-cursor:pointer;
+  position:fixed;
+  bottom:10px;
+  left:10px;
+  font-size:10px;
+  opacity:0.1;
+  cursor:pointer;
+  z-index:998;
 }
 #secretBtn:hover{ opacity:0.4; }
 
 /* hearts */
 .heart{
-position:fixed;
-bottom:-10px;
-font-size:20px;
-animation:float 8s infinite ease-in;
-opacity:0.3;
-cursor:pointer;
+  position:fixed;
+  bottom:-10px;
+  font-size:20px;
+  animation:float 8s infinite ease-in;
+  opacity:0.3;
+  cursor:pointer;
 }
 
 @keyframes float{
-0%{transform:translateY(0);}
-100%{transform:translateY(-110vh);}
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-110vh);}
 }
 
 /* images toggle */
 .toggle-img{
-border-radius:20px;
-box-shadow:0 0 20px rgba(255,0,120,0.4);
-margin-top:20px;
-max-width:240px;
-display:none;
+  border-radius:20px;
+  box-shadow:0 0 20px rgba(255,0,120,0.4);
+  margin:20px auto;
+  max-width:240px;
+  display:none;
+  text-align:center;
+}
+
+.toggle-img img{
+  width:100%;
+  height:auto;
+  border-radius:20px;
 }
 
 .show{
-display:block !important;
+  display:block !important;
 }
 
 .big-love{
-font-size:28px;
-max-width:700px;
-margin:auto;
-line-height:1.6;
+  font-size:28px;
+  max-width:700px;
+  margin:auto;
+  line-height:1.6;
+  text-align:center;
 }
 
 .secret-popup{
-display:none;
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:30px 40px;
-border-radius:20px;
-box-shadow:0 15px 40px rgba(0,0,0,0.25);
-font-size:22px;
-z-index:999;
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:white;
+  padding:30px 40px;
+  border-radius:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+  font-size:22px;
+  z-index:999;
 }
+
+#timeTogether{
+  display:block;
+  margin-top:5px;
+}
+
 </style>
 </head>
 
@@ -179,7 +202,7 @@ You are my favorite person in the universe.
 
 <button onclick="toggle('miss')">Click if you miss me</button>
 <div id="miss" class="toggle-img">
-<img src="ME.png" class="show">
+<img src="ME.png">
 <p>I miss you too, Kaitlyn. Probably more than you think.</p>
 </div>
 
@@ -195,7 +218,7 @@ You are my favorite person in the universe.
 
 <button onclick="toggle('drive')">Click if you passed your driving test</button>
 <div id="drive" class="toggle-img">
-<img src="drivinggf.png" class="show">
+<img src="drivinggf.png">
 <p>Good job Kaitlyn! I'm proud of you 🚗💗</p>
 </div>
 
@@ -262,7 +285,7 @@ I love you like crazy.
 <!-- SECRET PAGE -->
 <div id="secretPage" class="section">
 <h2>Freshly Pressed Orange Juice</h2>
-<img src="freshlypressed.jpg" class="show">
+<img src="freshlypressed.jpg" class="toggle-img" style="display:block;">
 </div>
 
 <!-- SECRET BUTTON -->
@@ -282,56 +305,62 @@ January 8th, 2026, 10:53 PM
 <script>
 let history=[]
 function nextPage(page){
-let current=document.querySelector('.active').id
-history.push(current)
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
-setTimeout(()=>{document.getElementById(page).classList.add('active')},100)
+  let current=document.querySelector('.active').id
+  history.push(current)
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+  setTimeout(()=>{document.getElementById(page).classList.add('active')},100)
 }
 function goBack(){
-if(history.length>0){
-let prev=history.pop()
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
-document.getElementById(prev).classList.add('active')
-}
+  if(history.length>0){
+    let prev=history.pop()
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+    document.getElementById(prev).classList.add('active')
+  }
 }
 function toggle(id){
-let el=document.getElementById(id)
-el.classList.toggle("show")
+  let el=document.getElementById(id)
+  el.classList.toggle("show")
 }
 
 let loveCount=0
 function loveClick(){
-loveCount++
-document.getElementById("loveCounter").innerHTML=loveCount+" / 10"
-if(loveCount>=10){
-document.getElementById("gameStatus").innerHTML="Good girl 😌"
-document.getElementById("finalButton").style.display="block"
-}
+  loveCount++
+  document.getElementById("loveCounter").innerHTML=loveCount+" / 10"
+  if(loveCount>=10){
+    document.getElementById("gameStatus").innerHTML="Good girl 😌"
+    document.getElementById("finalButton").style.display="block"
+  }
 }
 
 let heartCount=0
 function heartClick(){
-heartCount++
-if(heartCount>=20){
-document.getElementById("heartSecret").style.display="block"
-}
+  heartCount++
+  if(heartCount>=20){
+    document.getElementById("heartSecret").style.display="block"
+  }
 }
 
 /* TIMER */
 function toggleTime(){
-let popup=document.getElementById("timePopup")
-popup.style.display = popup.style.display==="block" ? "none":"block"
+  let popup=document.getElementById("timePopup")
+  popup.style.display = popup.style.display==="block" ? "none":"block"
 }
+
 let startDate=new Date("January 8, 2026 22:53:00")
 setInterval(()=>{
-let now=new Date()
-let diff=now-startDate
-let seconds=Math.floor(diff/1000)%60
-let minutes=Math.floor(diff/60000)%60
-let hours=Math.floor(diff/3600000)%24
-let days=Math.floor(diff/86400000)
-document.getElementById("timeTogether").innerHTML=
-days+" days "+hours+" hours "+minutes+" minutes "+seconds+" seconds"
+  let now=new Date()
+  let diff=now-startDate
+  let seconds=Math.floor(diff/1000)%60
+  let minutes=Math.floor(diff/60000)%60
+  let hours=Math.floor(diff/3600000)%24
+  let days=Math.floor(diff/86400000)
+  let months=Math.floor(days/30)
+  let years=Math.floor(months/12)
+  let displayDays=days % 30
+  let displayMonths=months % 12
+  document.getElementById("timeTogether").innerHTML=
+    years+" years "+displayMonths+" months "+displayDays+" days "+
+    hours+" hours "+minutes+" minutes "+seconds+" seconds"
 },1000)
 </script>
 
