@@ -6,7 +6,6 @@
 <title>Kaitlyn</title>
 
 <style>
-
 body{
 margin:0;
 font-family:'Segoe UI',sans-serif;
@@ -49,7 +48,6 @@ box-shadow:0 10px 25px rgba(255,0,120,0.4);
 }
 
 /* back arrow */
-
 .back{
 position:fixed;
 top:20px;
@@ -58,13 +56,9 @@ font-size:26px;
 cursor:pointer;
 opacity:0.6;
 }
-
-.back:hover{
-opacity:1;
-}
+.back:hover{ opacity:1; }
 
 /* timer */
-
 #timeBtn{
 position:fixed;
 bottom:10px;
@@ -72,7 +66,6 @@ right:10px;
 font-size:12px;
 opacity:0.6;
 }
-
 #timePopup{
 display:none;
 position:fixed;
@@ -85,8 +78,7 @@ box-shadow:0 10px 30px rgba(0,0,0,0.2);
 font-size:14px;
 }
 
-/* SECRET BUTTON */
-
+/* secret button */
 #secretBtn{
 position:fixed;
 bottom:10px;
@@ -95,13 +87,9 @@ font-size:10px;
 opacity:0.1;
 cursor:pointer;
 }
-
-#secretBtn:hover{
-opacity:0.4;
-}
+#secretBtn:hover{ opacity:0.4; }
 
 /* hearts */
-
 .heart{
 position:fixed;
 bottom:-10px;
@@ -116,11 +104,17 @@ cursor:pointer;
 100%{transform:translateY(-110vh);}
 }
 
-img{
+/* images toggle */
+.toggle-img{
 border-radius:20px;
 box-shadow:0 0 20px rgba(255,0,120,0.4);
 margin-top:20px;
 max-width:240px;
+display:none;
+}
+
+.show{
+display:block !important;
 }
 
 .big-love{
@@ -143,7 +137,6 @@ box-shadow:0 15px 40px rgba(0,0,0,0.25);
 font-size:22px;
 z-index:999;
 }
-
 </style>
 </head>
 
@@ -152,7 +145,6 @@ z-index:999;
 <div class="back" onclick="goBack()">⬅</div>
 
 <!-- HEARTS -->
-
 <div class="heart" onclick="heartClick()" style="left:15%">💗</div>
 <div class="heart" onclick="heartClick()" style="left:35%;animation-duration:9s">💗</div>
 <div class="heart" onclick="heartClick()" style="left:55%;animation-duration:7s">💗</div>
@@ -165,7 +157,6 @@ You are my favorite person in the universe.
 </div>
 
 <!-- PAGE 1 -->
-
 <div id="page1" class="section active">
 <h1>🔐 Access Granted</h1>
 <h2>Kaitlyn</h2>
@@ -173,59 +164,46 @@ You are my favorite person in the universe.
 </div>
 
 <!-- PAGE 2 -->
-
 <div id="page2" class="section">
 <h2>Fake Terms & Conditions</h2>
-
 <p>By entering this website you agree to:</p>
-
 <p>• Accept random hugs in the future</p>
 <p>• Allow rematch races</p>
 <p>• Accept to be my wife in the future 😌</p>
-
 <button onclick="nextPage('page3')">I Accept</button>
 </div>
 
 <!-- PAGE 3 -->
-
 <div id="page3" class="section">
-
 <h2>Welcome to Level 2</h2>
 
 <button onclick="toggle('miss')">Click if you miss me</button>
-
-<div id="miss" style="display:none">
-<img src="ME.png">
+<div id="miss" class="toggle-img">
+<img src="ME.png" class="show">
 <p>I miss you too, Kaitlyn. Probably more than you think.</p>
 </div>
 
 <button onclick="toggle('smile')">Click if you're smiling right now</button>
-
-<div id="smile" style="display:none">
+<div id="smile" class="toggle-img">
 <p>Aww… you're so cute when you're smiling 😊</p>
 </div>
 
 <button onclick="toggle('bed')">Click if you're in bed</button>
-
-<div id="bed" style="display:none">
+<div id="bed" class="toggle-img">
 <p>Good night my love. Sleep peacefully ❤️</p>
 </div>
 
 <button onclick="toggle('drive')">Click if you passed your driving test</button>
-
-<div id="drive" style="display:none">
-<img src="drivinggf.png">
+<div id="drive" class="toggle-img">
+<img src="drivinggf.png" class="show">
 <p>Good job Kaitlyn! I'm proud of you 🚗💗</p>
 </div>
 
 <br>
-
 <button onclick="nextPage('page4')">Next Page</button>
-
 </div>
 
 <!-- PAGE 4 -->
-
 <div id="page4" class="section">
 <h2>Why this exists</h2>
 <p>Because long distance shouldn't feel boring.</p>
@@ -233,11 +211,8 @@ You are my favorite person in the universe.
 </div>
 
 <!-- PAGE 5 -->
-
 <div id="page5" class="section">
-
 <h2>Future Missions</h2>
-
 <p>☐ Late night walk</p>
 <p>☐ Getting officially married</p>
 <p>☑ Living together happily forever</p>
@@ -245,90 +220,58 @@ You are my favorite person in the universe.
 <p>☐ Rematch race</p>
 
 <h3>Mini Surprise</h3>
-
 <audio controls>
 <source src="LOVE.m4a" type="audio/mp4">
 </audio>
 
 <br><br>
-
 <button onclick="nextPage('page6')">Next Page</button>
-
 </div>
 
 <!-- GAME -->
-
 <div id="page6" class="section">
-
 <h2>Hidden Level</h2>
-
 <p>Press the button 10 times</p>
-
 <button onclick="loveClick()">I Love You</button>
-
 <p id="loveCounter">0 / 10</p>
-
 <p id="gameStatus"></p>
-
 <div id="finalButton" style="display:none">
 <button onclick="nextPage('page7')">Final Page</button>
 </div>
-
 </div>
 
 <!-- FINAL -->
-
 <div id="page7" class="section">
-
 <h1>For Kaitlyn 💗</h1>
-
 <p class="big-love">
-
 I know this little website isn't something huge.
-
 But I really wanted to make it for you.
-
 Just a small place on the internet that reminds you how much you mean to me.
-
 Kaitlyn, I love you more than words can really explain.
-
 I love talking with you, laughing with you,
 and imagining the future with you.
-
 And if life lets me choose,
 I would love to spend that future with you.
-
 This project may be small,
 but the feelings behind it are not.
-
 I love you like crazy.
-
 ❤️
-
 </p>
-
 </div>
 
 <!-- SECRET PAGE -->
-
 <div id="secretPage" class="section">
-
 <h2>Freshly Pressed Orange Juice</h2>
-
-<img src="freshlypressed.jpg">
-
+<img src="freshlypressed.jpg" class="show">
 </div>
 
 <!-- SECRET BUTTON -->
-
 <div id="secretBtn" onclick="nextPage('secretPage')">
 secret
 </div>
 
 <!-- TIME COUNTER -->
-
 <button id="timeBtn" onclick="toggleTime()">Time Counter</button>
-
 <div id="timePopup">
 <b>Best moment of my life</b><br>
 January 8th, 2026, 10:53 PM
@@ -337,20 +280,13 @@ January 8th, 2026, 10:53 PM
 </div>
 
 <script>
-
 let history=[]
-
 function nextPage(page){
 let current=document.querySelector('.active').id
 history.push(current)
-
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
-
-setTimeout(()=>{
-document.getElementById(page).classList.add('active')
-},100)
+setTimeout(()=>{document.getElementById(page).classList.add('active')},100)
 }
-
 function goBack(){
 if(history.length>0){
 let prev=history.pop()
@@ -358,19 +294,15 @@ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
 document.getElementById(prev).classList.add('active')
 }
 }
-
 function toggle(id){
 let el=document.getElementById(id)
-if(el.style.display==="none") el.style.display="block"
-else el.style.display="none"
+el.classList.toggle("show")
 }
 
 let loveCount=0
-
 function loveClick(){
 loveCount++
 document.getElementById("loveCounter").innerHTML=loveCount+" / 10"
-
 if(loveCount>=10){
 document.getElementById("gameStatus").innerHTML="Good girl 😌"
 document.getElementById("finalButton").style.display="block"
@@ -378,40 +310,29 @@ document.getElementById("finalButton").style.display="block"
 }
 
 let heartCount=0
-
 function heartClick(){
 heartCount++
-
 if(heartCount>=20){
 document.getElementById("heartSecret").style.display="block"
 }
 }
 
 /* TIMER */
-
 function toggleTime(){
 let popup=document.getElementById("timePopup")
 popup.style.display = popup.style.display==="block" ? "none":"block"
 }
-
 let startDate=new Date("January 8, 2026 22:53:00")
-
 setInterval(()=>{
-
 let now=new Date()
-
 let diff=now-startDate
-
 let seconds=Math.floor(diff/1000)%60
 let minutes=Math.floor(diff/60000)%60
 let hours=Math.floor(diff/3600000)%24
 let days=Math.floor(diff/86400000)
-
 document.getElementById("timeTogether").innerHTML=
 days+" days "+hours+" hours "+minutes+" minutes "+seconds+" seconds"
-
 },1000)
-
 </script>
 
 </body>
