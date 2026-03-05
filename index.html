@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 2 - Kaitlyn</title>
+
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#ffe6f0,#ffcce0);
+  text-align:center;
+  color:#4a0033;
+  overflow-x:hidden;
+}
+
+.section {
+  display:none;
+  padding:80px 20px;
+}
+
+.active {
+  display:block;
+}
+
+button {
+  padding:14px 28px;
+  margin:12px;
+  border:none;
+  border-radius:30px;
+  background:#ff66a3;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover {
+  background:#ff3385;
+  transform:scale(1.05);
+}
+
+.hidden-link {
+  margin-top:40px;
+  font-size:12px;
+  opacity:0.3;
+  cursor:pointer;
+}
+
+.heart {
+  position:fixed;
+  bottom:-10px;
+  font-size:20px;
+  animation:float 6s infinite;
+  opacity:0.4;
+}
+
+@keyframes float {
+  0% {transform:translateY(0);}
+  100% {transform:translateY(-110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts -->
+<div class="heart" style="left:10%;">💗</div>
+<div class="heart" style="left:30%; animation-duration:7s;">💗</div>
+<div class="heart" style="left:50%; animation-duration:8s;">💗</div>
+<div class="heart" style="left:70%; animation-duration:6s;">💗</div>
+<div class="heart" style="left:90%; animation-duration:9s;">💗</div>
+
+<!-- PAGE 1 -->
+<div id="page1" class="section active">
+<h1>🔐 Access Granted</h1>
+<h2>Kaitlyn</h2>
+<button onclick="nextPage('page2')">Enter</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="section">
+<h2>Fake Terms & Conditions</h2>
+<p>By entering this website you agree to:</p>
+<p>• Accept random hugs in the future</p>
+<p>• Allow rematch races</p>
+<p>• Accept to be my wife in the future 😌</p>
+<button onclick="nextPage('page3')">I Accept</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="page3" class="section">
+<h2>Welcome to Level 2</h2>
+<p>You unlocked something not everyone gets to see.</p>
+
+<button onclick="toggle('miss')">Click if you miss me</button>
+<div id="miss" style="display:none;">
+<img src="https://imgur.com/a/HXeoKiu" width="200" style="border-radius:20px;"><br><br>
+<p>I miss you too, Kaitlyn. Probably more than you think.</p>
+</div>
+
+<button onclick="toggle('smile')">Click if you're smiling right now</button>
+<div id="smile" style="display:none;">
+<p>Aww… you're so cute when you're smiling 😊.</p>
+</div>
+
+<button onclick="toggle('bed')">Click if you're in bed</button>
+<div id="bed" style="display:none;">
+<p>Good night my love. I hope you sleep peacefully. Talk to you tomorrow ❤️</p>
+</div>
+
+<br>
+<button onclick="nextPage('page4')">Next Page</button>
+</div>
+
+<!-- PAGE 4 -->
+<div id="page4" class="section">
+<h2>Why this exists</h2>
+<p>Because long distance shouldn't feel boring.</p>
+<button onclick="nextPage('page5')">Next Page</button>
+</div>
+
+<!-- PAGE 5 -->
+<div id="page5" class="section">
+<h2>Future Missions</h2>
+<p>☐ Late night walk</p>
+<p>☐ Getting officially married</p>
+<p>☐ Living together happily forever</p>
+<p>☐ Buying a house together</p>
+<p>☐ Rematch race</p>
+
+<h3>Mini Surprise</h3>
+<p>Press play 👇</p>
+
+<audio controls>
+<source src="PUT_YOUR_AUDIO_LINK_HERE" type="audio/mpeg">
+</audio>
+
+<br><br>
+<button onclick="nextPage('page6')">Next Page</button>
+</div>
+
+<!-- PAGE 6 -->
+<div id="page6" class="section">
+<h2>You found the hidden level.</h2>
+<p>Press the space bar 10 times in under 5 seconds.</p>
+<p id="gameStatus"></p>
+<button onclick="startGame()">Start</button>
+</div>
+
+<div class="hidden-link" onclick="nextPage('page6')">
+secret section
+</div>
+
+<script>
+function nextPage(page) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+}
+
+function toggle(id) {
+  var el = document.getElementById(id);
+  el.style.display = el.style.display === "none" ? "block" : "none";
+}
+
+let count = 0;
+let startTime;
+let gameActive = false;
+
+function startGame(){
+  count = 0;
+  gameActive = true;
+  startTime = new Date().getTime();
+  document.getElementById("gameStatus").innerHTML = "GO!";
+}
+
+document.addEventListener("keydown", function(e){
+  if(gameActive && e.code === "Space"){
+    count++;
+    if(count >= 10){
+      let endTime = new Date().getTime();
+      let time = (endTime - startTime)/1000;
+      if(time <= 5){
+        document.getElementById("gameStatus").innerHTML = "Good girl 😌";
+      } else {
+        document.getElementById("gameStatus").innerHTML = "Too slow... try again.";
+      }
+      gameActive = false;
+    }
+  }
+});
+</script>
+
+</body>
+</html>
