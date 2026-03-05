@@ -16,8 +16,6 @@ color:#4a0033;
 overflow-x:hidden;
 }
 
-/* sections */
-
 .section{
 opacity:0;
 transform:translateY(30px);
@@ -31,8 +29,6 @@ display:block;
 opacity:1;
 transform:translateY(0);
 }
-
-/* buttons */
 
 button{
 padding:14px 30px;
@@ -52,8 +48,6 @@ transform:scale(1.08);
 box-shadow:0 10px 25px rgba(255,0,120,0.4);
 }
 
-/* hidden link */
-
 .hidden-link{
 margin-top:40px;
 font-size:12px;
@@ -64,8 +58,6 @@ cursor:pointer;
 .hidden-link:hover{
 opacity:0.6;
 }
-
-/* floating hearts */
 
 .heart{
 position:fixed;
@@ -79,8 +71,6 @@ opacity:0.3;
 0%{transform:translateY(0);}
 100%{transform:translateY(-110vh);}
 }
-
-/* image */
 
 img{
 border-radius:20px;
@@ -107,13 +97,10 @@ line-height:1.6;
 
 <body>
 
-<!-- floating hearts -->
-
 <div class="heart" style="left:15%">💗</div>
 <div class="heart" style="left:35%;animation-duration:9s">💗</div>
 <div class="heart" style="left:55%;animation-duration:7s">💗</div>
 <div class="heart" style="left:75%;animation-duration:10s">💗</div>
-
 
 <!-- PAGE 1 -->
 
@@ -125,7 +112,6 @@ line-height:1.6;
 <button onclick="nextPage('page2')">Enter</button>
 
 </div>
-
 
 <!-- PAGE 2 -->
 
@@ -142,7 +128,6 @@ line-height:1.6;
 <button onclick="nextPage('page3')">I Accept</button>
 
 </div>
-
 
 <!-- PAGE 3 -->
 
@@ -179,7 +164,6 @@ line-height:1.6;
 
 </div>
 
-
 <!-- PAGE 4 -->
 
 <div id="page4" class="section">
@@ -191,7 +175,6 @@ line-height:1.6;
 <button onclick="nextPage('page5')">Next Page</button>
 
 </div>
-
 
 <!-- PAGE 5 -->
 
@@ -219,7 +202,6 @@ line-height:1.6;
 
 </div>
 
-
 <!-- PAGE 6 GAME -->
 
 <div id="page6" class="section">
@@ -239,7 +221,6 @@ line-height:1.6;
 </div>
 
 </div>
-
 
 <!-- FINAL PAGE -->
 
@@ -279,27 +260,32 @@ I love you like crazy.
 
 </div>
 
+<!-- SECRET PAGE -->
 
-<div class="hidden-link" onclick="nextPage('page6')">
+<div id="secretPage" class="section">
+
+<h2>Freshly Pressed Orange Juice</h2>
+
+<br>
+
+<img src="freshlypressed.png" width="260" class="show">
+
+</div>
+
+<!-- SECRET BUTTON -->
+
+<div class="hidden-link" onclick="nextPage('secretPage')">
 secret section
 </div>
 
-
 <script>
 
-/* page system */
-
 function nextPage(page){
-
 document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
-
 setTimeout(()=>{
 document.getElementById(page).classList.add('active')
 },100)
-
 }
-
-/* toggle sections */
 
 function toggle(id){
 
@@ -325,9 +311,6 @@ if(img) img.classList.remove("show")
 }
 
 }
-
-
-/* love game */
 
 let loveCount=0
 
