@@ -21,7 +21,7 @@ body{
   transition:0.6s;
   display:none;
   padding:80px 20px;
-  text-align:center; /* centrage des contenus */
+  text-align:center;
 }
 
 .active{
@@ -29,7 +29,7 @@ body{
   opacity:1;
   transform:translateY(0);
   position:relative;
-  z-index:1; /* assure que la flèche reste cliquable */
+  z-index:1;
 }
 
 button{
@@ -153,13 +153,25 @@ button:hover{
   box-shadow:0 15px 40px rgba(0,0,0,0.25);
   font-size:22px;
   z-index:999;
+  text-align:center;
 }
 
-#timeTogether{
-  display:block;
-  margin-top:5px;
+/* close X for popup */
+.popup-close{
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:20px;
+  cursor:pointer;
+  font-weight:bold;
+  color:#4a0033;
 }
 
+/* Volume slider */
+#volumeSlider{
+  width:200px;
+  margin-top:15px;
+}
 </style>
 </head>
 
@@ -174,9 +186,10 @@ button:hover{
 <div class="heart" onclick="heartClick()" style="left:75%;animation-duration:10s">💗</div>
 
 <div id="heartSecret" class="secret-popup">
-You found another secret 💗
-<br><br>
-You are my favorite person in the universe.
+  <span class="popup-close" onclick="closeHeartSecret()">×</span>
+  You found another secret 💗
+  <br><br>
+  You are my favorite person in the universe.
 </div>
 
 <!-- PAGE 1 -->
@@ -266,6 +279,12 @@ You are my favorite person in the universe.
 <!-- FINAL -->
 <div id="page7" class="section">
 <h1>For Kaitlyn 💗</h1>
+
+<audio id="finalMusic" src="TV Girl-Lovers Rock.mp3" loop></audio>
+<br>
+<label for="volumeSlider">Volume: </label>
+<input type="range" id="volumeSlider" min="0" max="100" value="15">
+
 <p class="big-love">
 I know this little website isn't something huge.
 But I really wanted to make it for you.
@@ -308,15 +327,21 @@ function nextPage(page){
   let current=document.querySelector('.active').id
   history.push(current)
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
-  setTimeout(()=>{document.getElementById(page).classList.add('active')},100)
+  setTimeout(()=>{
+    document.getElementById(page).classList.add('active')
+    handleFinalMusic(page)
+  },100)
 }
+
 function goBack(){
   if(history.length>0){
     let prev=history.pop()
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
     document.getElementById(prev).classList.add('active')
+    handleFinalMusic(prev)
   }
 }
+
 function toggle(id){
   let el=document.getElementById(id)
   el.classList.toggle("show")
@@ -335,9 +360,13 @@ function loveClick(){
 let heartCount=0
 function heartClick(){
   heartCount++
-  if(heartCount>=20){
+  if(heartCount>=10){ // modifié de 20 à 10
     document.getElementById("heartSecret").style.display="block"
   }
+}
+
+function closeHeartSecret(){
+  document.getElementById("heartSecret").style.display="none"
 }
 
 /* TIMER */
@@ -362,6 +391,26 @@ setInterval(()=>{
     years+" years "+displayMonths+" months "+displayDays+" days "+
     hours+" hours "+minutes+" minutes "+seconds+" seconds"
 },1000)
+
+/* FINAL MUSIC CONTROL */
+function handleFinalMusic(page){
+  let music=document.getElementById("finalMusic")
+  if(page==="page7"){
+    music.currentTime=0
+    music.volume=0.15
+    music.play()
+  } else {
+    music.pause()
+  }
+}
+
+// Slider de volume
+const volumeSlider = document.getElementById("volumeSlider");
+const finalMusic = document.getElementById("finalMusic");
+
+volumeSlider.addEventListener("input", () => {
+    finalMusic.volume = volumeSlider.value / 100;
+});
 </script>
 
 </body>
