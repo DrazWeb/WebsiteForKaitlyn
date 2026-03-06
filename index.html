@@ -50,6 +50,33 @@ button:hover{
   box-shadow:0 10px 25px rgba(255,0,120,0.4);
 }
 
+/* glow typing text */
+.big-love{
+  font-size:28px;
+  max-width:700px;
+  margin:auto;
+  line-height:1.6;
+  text-align:center;
+  text-shadow:
+    0 0 5px #ff66a3,
+    0 0 10px #ff66a3,
+    0 0 20px #ff3385;
+}
+
+/* typing cursor */
+.cursor{
+  display:inline-block;
+  width:2px;
+  background:#ff3385;
+  margin-left:3px;
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  0%,50%,100%{opacity:1}
+  25%,75%{opacity:0}
+}
+
 /* back arrow */
 .back{
   position:fixed;
@@ -62,135 +89,12 @@ button:hover{
 }
 .back:hover{ opacity:1; }
 
-/* timer */
-#timeBtn{
-  position:fixed;
-  bottom:10px;
-  right:10px;
-  font-size:12px;
-  opacity:0.6;
-  z-index:998;
-}
-#timePopup{
-  display:none;
-  position:fixed;
-  bottom:60px;
-  right:10px;
-  background:white;
-  padding:15px;
-  border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  font-size:14px;
-  text-align:center;
-  max-width:200px;
-  z-index:998;
-}
-
-/* secret button */
-#secretBtn{
-  position:fixed;
-  bottom:10px;
-  left:10px;
-  font-size:10px;
-  opacity:0.1;
-  cursor:pointer;
-  z-index:998;
-}
-#secretBtn:hover{ opacity:0.4; }
-
-/* hearts */
-.heart{
-  position:fixed;
-  bottom:-10px;
-  font-size:20px;
-  animation:float 8s infinite ease-in;
-  opacity:0.3;
-  cursor:pointer;
-}
-
-@keyframes float{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(-110vh);}
-}
-
-/* images toggle */
-.toggle-img{
-  border-radius:20px;
-  box-shadow:0 0 20px rgba(255,0,120,0.4);
-  margin:20px auto;
-  max-width:240px;
-  display:none;
-  text-align:center;
-}
-
-.toggle-img img{
-  width:100%;
-  height:auto;
-  border-radius:20px;
-}
-
-.show{
-  display:block !important;
-}
-
-.big-love{
-  font-size:28px;
-  max-width:700px;
-  margin:auto;
-  line-height:1.6;
-  text-align:center;
-}
-
-.secret-popup{
-  display:none;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:white;
-  padding:30px 40px;
-  border-radius:20px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.25);
-  font-size:22px;
-  z-index:999;
-  text-align:center;
-}
-
-/* close X for popup */
-.popup-close{
-  position:absolute;
-  top:10px;
-  right:15px;
-  font-size:20px;
-  cursor:pointer;
-  font-weight:bold;
-  color:#4a0033;
-}
-
-/* Volume slider */
-#volumeSlider{
-  width:200px;
-  margin-top:15px;
-}
 </style>
 </head>
 
 <body>
 
 <div class="back" onclick="goBack()">⬅</div>
-
-<!-- HEARTS -->
-<div class="heart" onclick="heartClick()" style="left:15%">💗</div>
-<div class="heart" onclick="heartClick()" style="left:35%;animation-duration:9s">💗</div>
-<div class="heart" onclick="heartClick()" style="left:55%;animation-duration:7s">💗</div>
-<div class="heart" onclick="heartClick()" style="left:75%;animation-duration:10s">💗</div>
-
-<div id="heartSecret" class="secret-popup">
-  <span class="popup-close" onclick="closeHeartSecret()">×</span>
-  You found another secret 💗
-  <br><br>
-  You are my favorite person in the universe.
-</div>
 
 <!-- PAGE 1 -->
 <div id="page1" class="section active">
@@ -212,30 +116,6 @@ button:hover{
 <!-- PAGE 3 -->
 <div id="page3" class="section">
 <h2>Welcome to Level 2</h2>
-
-<button onclick="toggle('miss')">Click if you miss me</button>
-<div id="miss" class="toggle-img">
-<img src="ME.png">
-<p>I miss you too, Kaitlyn. Probably more than you think.</p>
-</div>
-
-<button onclick="toggle('smile')">Click if you're smiling right now</button>
-<div id="smile" class="toggle-img">
-<p>Aww… you're so cute when you're smiling 😊</p>
-</div>
-
-<button onclick="toggle('bed')">Click if you're in bed</button>
-<div id="bed" class="toggle-img">
-<p>Good night my love. Sleep peacefully ❤️</p>
-</div>
-
-<button onclick="toggle('drive')">Click if you passed your driving test</button>
-<div id="drive" class="toggle-img">
-<img src="drivinggf.png">
-<p>Good job Kaitlyn! I'm proud of you 🚗💗</p>
-</div>
-
-<br>
 <button onclick="nextPage('page4')">Next Page</button>
 </div>
 
@@ -255,16 +135,11 @@ button:hover{
 <p>☐ Buying a house together</p>
 <p>☐ Rematch race</p>
 
-<h3>Mini Surprise</h3>
-<audio controls>
-<source src="LOVE.m4a" type="audio/mp4">
-</audio>
-
-<br><br>
+<br>
 <button onclick="nextPage('page6')">Next Page</button>
 </div>
 
-<!-- GAME -->
+<!-- PAGE 6 -->
 <div id="page6" class="section">
 <h2>Love Level</h2>
 <p>Press the button 10 times</p>
@@ -276,60 +151,35 @@ button:hover{
 </div>
 </div>
 
-<!-- FINAL -->
+<!-- FINAL PAGE -->
 <div id="page7" class="section">
 <h1>For Kaitlyn 💗</h1>
 
 <audio id="finalMusic" src="TV Girl-Lovers Rock.mp3" loop></audio>
-<br>
-<label for="volumeSlider">Volume: </label>
-<input type="range" id="volumeSlider" min="0" max="100" value="15">
 
 <p class="big-love">
-I know this little website isn't something huge.
-But I really wanted to make it for you.
-Just a small place on the internet that reminds you how much you mean to me.
-Kaitlyn, I love you more than words can really explain.
-I love talking with you, laughing with you,
-and imagining the future with you.
-And if life lets me choose,
-I would love to spend that future with you.
-This project may be small,
-but the feelings behind it are not.
-I love you like crazy.
-❤️
+<span id="typedText"></span><span class="cursor"></span>
 </p>
-</div>
 
-<!-- SECRET PAGE -->
-<div id="secretPage" class="section">
-<h2>Freshly Pressed Orange Juice</h2>
-<img src="freshlypressed.jpg" class="toggle-img" style="display:block;">
-</div>
-
-<!-- SECRET BUTTON -->
-<div id="secretBtn" onclick="nextPage('secretPage')">
-secret
-</div>
-
-<!-- TIME COUNTER -->
-<button id="timeBtn" onclick="toggleTime()">Time Counter</button>
-<div id="timePopup">
-<b>Best moment of my life</b><br>
-January 8th, 2026, 10:53 PM
-<br><br>
-<span id="timeTogether"></span>
 </div>
 
 <script>
+
 let history=[]
 function nextPage(page){
   let current=document.querySelector('.active').id
   history.push(current)
+
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
+
   setTimeout(()=>{
     document.getElementById(page).classList.add('active')
     handleFinalMusic(page)
+
+    if(page==="page7"){
+      startTyping()
+    }
+
   },100)
 }
 
@@ -338,13 +188,7 @@ function goBack(){
     let prev=history.pop()
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
     document.getElementById(prev).classList.add('active')
-    handleFinalMusic(prev)
   }
-}
-
-function toggle(id){
-  let el=document.getElementById(id)
-  el.classList.toggle("show")
 }
 
 let loveCount=0
@@ -357,42 +201,7 @@ function loveClick(){
   }
 }
 
-let heartCount=0
-function heartClick(){
-  heartCount++
-  if(heartCount>=10){ // modifié de 20 à 10
-    document.getElementById("heartSecret").style.display="block"
-  }
-}
-
-function closeHeartSecret(){
-  document.getElementById("heartSecret").style.display="none"
-}
-
-/* TIMER */
-function toggleTime(){
-  let popup=document.getElementById("timePopup")
-  popup.style.display = popup.style.display==="block" ? "none":"block"
-}
-
-let startDate=new Date("January 8, 2026 22:53:00")
-setInterval(()=>{
-  let now=new Date()
-  let diff=now-startDate
-  let seconds=Math.floor(diff/1000)%60
-  let minutes=Math.floor(diff/60000)%60
-  let hours=Math.floor(diff/3600000)%24
-  let days=Math.floor(diff/86400000)
-  let months=Math.floor(days/30)
-  let years=Math.floor(months/12)
-  let displayDays=days % 30
-  let displayMonths=months % 12
-  document.getElementById("timeTogether").innerHTML=
-    years+" years "+displayMonths+" months "+displayDays+" days "+
-    hours+" hours "+minutes+" minutes "+seconds+" seconds"
-},1000)
-
-/* FINAL MUSIC CONTROL */
+/* FINAL MUSIC */
 function handleFinalMusic(page){
   let music=document.getElementById("finalMusic")
   if(page==="page7"){
@@ -404,13 +213,37 @@ function handleFinalMusic(page){
   }
 }
 
-// Slider de volume
-const volumeSlider = document.getElementById("volumeSlider");
-const finalMusic = document.getElementById("finalMusic");
+/* TYPEWRITER TEXT */
 
-volumeSlider.addEventListener("input", () => {
-    finalMusic.volume = volumeSlider.value / 100;
-});
+const message=`I know this little website isn't something huge.
+But I really wanted to make it for you.
+Just a small place on the internet that reminds you how much you mean to me.
+Kaitlyn, I love you more than words can really explain.
+I love talking with you, laughing with you,
+and imagining the future with you.
+And if life lets me choose,
+I would love to spend that future with you.
+This project may be small,
+but the feelings behind it are not.
+I love you like crazy.
+❤️`
+
+let index=0
+
+function startTyping(){
+  index=0
+  document.getElementById("typedText").innerHTML=""
+  typeWriter()
+}
+
+function typeWriter(){
+  if(index<message.length){
+    document.getElementById("typedText").innerHTML+=message.charAt(index)
+    index++
+    setTimeout(typeWriter,35)
+  }
+}
+
 </script>
 
 </body>
