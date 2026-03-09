@@ -369,29 +369,58 @@ function closeHeartSecret(){
   document.getElementById("heartSecret").style.display="none"
 }
 
-/* TIMER */
+/* TIMER (accurate calendar calculation) */
 function toggleTime(){
   let popup=document.getElementById("timePopup")
   popup.style.display = popup.style.display==="block" ? "none":"block"
 }
 
-let startDate=new Date("January 8, 2026 22:53:00")
-setInterval(()=>{
-  let now=new Date()
-  let diff=now-startDate
-  let seconds=Math.floor(diff/1000)%60
-  let minutes=Math.floor(diff/60000)%60
-  let hours=Math.floor(diff/3600000)%24
-  let days=Math.floor(diff/86400000)
-  let months=Math.floor(days/30)
-  let years=Math.floor(months/12)
-  let displayDays=days % 30
-  let displayMonths=months % 12
-  document.getElementById("timeTogether").innerHTML=
-    years+" years "+displayMonths+" months "+displayDays+" days "+
-    hours+" hours "+minutes+" minutes "+seconds+" seconds"
-},1000)
+let startDate = new Date("January 8, 2026 22:53:00")
 
+function updateTimer(){
+
+  let now = new Date()
+
+  let years = now.getFullYear() - startDate.getFullYear()
+  let months = now.getMonth() - startDate.getMonth()
+  let days = now.getDate() - startDate.getDate()
+  let hours = now.getHours() - startDate.getHours()
+  let minutes = now.getMinutes() - startDate.getMinutes()
+  let seconds = now.getSeconds() - startDate.getSeconds()
+
+  if(seconds < 0){
+    seconds += 60
+    minutes--
+  }
+
+  if(minutes < 0){
+    minutes += 60
+    hours--
+  }
+
+  if(hours < 0){
+    hours += 24
+    days--
+  }
+
+  if(days < 0){
+    let lastMonth = new Date(now.getFullYear(), now.getMonth(), 0)
+    days += lastMonth.getDate()
+    months--
+  }
+
+  if(months < 0){
+    months += 12
+    years--
+  }
+
+  document.getElementById("timeTogether").innerHTML =
+    years+" years "+months+" months "+days+" days "+
+    hours+" hours "+minutes+" minutes "+seconds+" seconds"
+}
+
+setInterval(updateTimer,1000)
+updateTimer()
 /* FINAL MUSIC CONTROL */
 function handleFinalMusic(page){
   let music=document.getElementById("finalMusic")
