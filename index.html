@@ -6,12 +6,29 @@
 <title>Kaitlyn</title>
 
 <style>
+:root{
+  --wine:#7d1732;
+  --deep-wine:#510d22;
+  --rose:#c84a69;
+  --soft-rose:#ef9eae;
+  --cream:#fff7f2;
+  --ink:#4a1624;
+}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
+  min-height:100vh;
   font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(135deg,#ffe6f5,#ffccd9);
+  background:
+    radial-gradient(circle at 18% 12%,rgba(255,224,222,0.95),transparent 34%),
+    radial-gradient(circle at 86% 82%,rgba(196,64,91,0.20),transparent 38%),
+    linear-gradient(145deg,#fff7f2 0%,#f5c7cc 50%,#cb667b 100%);
   text-align:center;
-  color:#4a0033;
+  color:var(--ink);
   overflow-x:hidden;
 }
 
@@ -20,7 +37,8 @@ body{
   transform:translateY(30px);
   transition:0.6s;
   display:none;
-  padding:80px 20px;
+  min-height:100vh;
+  padding:80px 20px 110px;
   text-align:center;
 }
 
@@ -32,22 +50,43 @@ body{
   z-index:1;
 }
 
+.section > h1,
+.section > h2,
+.section > h3,
+.section > p,
+.section > audio,
+.section > .toggle-img,
+.section > .love-message,
+.section > button{
+  position:relative;
+  z-index:2;
+}
+
+h1,h2,h3{
+  color:var(--deep-wine);
+}
+
+h1,h2{
+  font-family:Georgia,'Times New Roman',serif;
+  font-weight:500;
+}
+
 button{
   padding:14px 30px;
   margin:12px;
   border:none;
   border-radius:30px;
-  background:linear-gradient(45deg,#ff66a3,#ff3385);
+  background:linear-gradient(45deg,var(--rose),var(--wine));
   color:white;
   font-size:16px;
   cursor:pointer;
   transition:0.3s;
-  box-shadow:0 5px 15px rgba(255,0,120,0.25);
+  box-shadow:0 5px 15px rgba(125,23,50,0.25);
 }
 
 button:hover{
-  transform:scale(1.08);
-  box-shadow:0 10px 25px rgba(255,0,120,0.4);
+  transform:scale(1.06);
+  box-shadow:0 10px 25px rgba(125,23,50,0.35);
 }
 
 /* back fleche */
@@ -55,9 +94,19 @@ button:hover{
   position:fixed;
   top:20px;
   left:20px;
+  width:44px;
+  height:44px;
+  padding:0;
+  margin:0;
+  display:grid;
+  place-items:center;
   font-size:26px;
+  color:var(--wine);
+  background:rgba(255,247,242,0.82);
+  border:1px solid rgba(125,23,50,0.16);
+  border-radius:50%;
   cursor:pointer;
-  opacity:0.6;
+  opacity:0.75;
   z-index:999;
 }
 .back:hover{ opacity:1; }
@@ -68,21 +117,22 @@ button:hover{
   bottom:10px;
   right:10px;
   font-size:12px;
-  opacity:0.6;
+  opacity:0.8;
   z-index:998;
 }
 #timePopup{
   display:none;
   position:fixed;
-  bottom:60px;
+  bottom:65px;
   right:10px;
-  background:white;
-  padding:15px;
+  background:#fffaf7;
+  padding:16px;
+  border:1px solid rgba(125,23,50,0.14);
   border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  box-shadow:0 10px 30px rgba(81,13,34,0.20);
   font-size:14px;
   text-align:center;
-  max-width:200px;
+  max-width:240px;
   z-index:998;
 }
 
@@ -101,32 +151,48 @@ button:hover{
 /* <3 */
 .heart{
   position:fixed;
-  bottom:-10px;
-  font-size:20px;
-  animation:float 8s infinite ease-in;
-  opacity:0.3;
+  bottom:-35px;
+  padding:4px;
+  margin:0;
+  color:#f6d9c7;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  font-family:Georgia,serif;
+  font-size:25px;
+  text-shadow:0 2px 8px rgba(81,13,34,0.20);
+  animation:float 8s infinite linear;
+  opacity:0.75;
   cursor:pointer;
+  z-index:3;
+}
+
+.heart:hover{
+  box-shadow:none;
 }
 
 @keyframes float{
-  0%{transform:translateY(0);}
-  100%{transform:translateY(-110vh);}
+  0%{transform:translateY(0) rotate(-8deg);}
+  100%{transform:translateY(-115vh) rotate(16deg);}
 }
 
 /* images pop */
 .toggle-img{
+  border:1px solid rgba(200,74,105,0.20);
   border-radius:20px;
-  box-shadow:0 0 20px rgba(255,0,120,0.4);
+  box-shadow:0 12px 30px rgba(81,13,34,0.14);
   margin:20px auto;
-  max-width:240px;
+  padding:15px;
+  max-width:280px;
   display:none;
   text-align:center;
+  background:rgba(255,250,247,0.90);
 }
 
 .toggle-img img{
   width:100%;
   height:auto;
-  border-radius:20px;
+  border-radius:15px;
 }
 
 .show{
@@ -134,11 +200,107 @@ button:hover{
 }
 
 .big-love{
-  font-size:28px;
-  max-width:700px;
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:clamp(18px,3vw,25px);
+  max-width:720px;
   margin:auto;
-  line-height:1.6;
+  padding:32px;
+  line-height:1.75;
   text-align:center;
+  background:rgba(255,250,247,0.78);
+  border:1px solid rgba(125,23,50,0.12);
+  border-radius:24px;
+  box-shadow:0 20px 60px rgba(81,13,34,0.14);
+}
+
+.terms{
+  width:fit-content;
+  max-width:100%;
+  margin:24px auto;
+  padding:22px 30px;
+  text-align:left;
+  background:rgba(255,250,247,0.72);
+  border:1px solid rgba(125,23,50,0.12);
+  border-radius:20px;
+}
+
+.terms p{
+  margin:12px 0;
+}
+
+.love-message{
+  display:none;
+  max-width:760px;
+  margin:25px auto;
+  padding:34px 40px;
+  line-height:1.85;
+  text-align:left;
+  background:rgba(255,250,247,0.94);
+  border:1px solid rgba(200,74,105,0.22);
+  border-radius:22px;
+  box-shadow:0 18px 50px rgba(81,13,34,0.16);
+}
+
+.love-message p{
+  margin:0 0 18px;
+}
+
+.love-message p:last-child{
+  margin-bottom:0;
+  color:var(--wine);
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:20px;
+  text-align:center;
+}
+
+.princessBtn{
+  display:block;
+  margin:28px auto 12px;
+  padding-left:40px;
+  padding-right:40px;
+}
+
+.missions{
+  width:min(100%,650px);
+  margin:25px auto;
+  padding:24px 30px;
+  text-align:left;
+  line-height:1.5;
+  background:rgba(255,250,247,0.74);
+  border:1px solid rgba(125,23,50,0.12);
+  border-radius:20px;
+}
+
+.missions p{
+  margin:12px 0;
+}
+
+.missions .done{
+  color:var(--wine);
+}
+
+.missions small{
+  color:#89515f;
+}
+
+/* ready for later, but nothing shows until you add and uncomment the media */
+.memory-gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:25px;
+}
+
+.memory-gallery img,
+.memory-gallery video{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:15px;
+}
+
+.memory-gallery video{
+  grid-column:1/-1;
 }
 
 .secret-popup{
@@ -147,10 +309,12 @@ button:hover{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  background:white;
-  padding:30px 40px;
+  width:min(90%,440px);
+  background:#fffaf7;
+  padding:34px 40px;
+  border:1px solid rgba(125,23,50,0.14);
   border-radius:20px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+  box-shadow:0 15px 50px rgba(81,13,34,0.28);
   font-size:22px;
   z-index:999;
   text-align:center;
@@ -161,16 +325,48 @@ button:hover{
   position:absolute;
   top:10px;
   right:15px;
+  padding:0;
+  margin:0;
+  color:var(--deep-wine);
+  background:transparent;
+  box-shadow:none;
   font-size:20px;
   cursor:pointer;
   font-weight:bold;
-  color:#4a0033;
 }
 
 /* son slider */
 #volumeSlider{
   width:200px;
   margin-top:15px;
+  accent-color:var(--wine);
+}
+
+#page5 audio{
+  display:block;
+  max-width:100%;
+  margin:0 auto;
+}
+
+@media(max-width:650px){
+  .section{
+    padding:70px 15px 110px;
+  }
+
+  .love-message,
+  .big-love,
+  .terms,
+  .missions{
+    padding:25px 22px;
+  }
+
+  .memory-gallery{
+    grid-template-columns:1fr;
+  }
+
+  .memory-gallery video{
+    grid-column:auto;
+  }
 }
 </style>
 </head>
@@ -180,14 +376,14 @@ button:hover{
 <div class="back" onclick="goBack()">⬅</div>
 
 <!-- <3 2 -->
-<div class="heart" onclick="heartClick()" style="left:15%">💗</div>
-<div class="heart" onclick="heartClick()" style="left:35%;animation-duration:9s">💗</div>
-<div class="heart" onclick="heartClick()" style="left:55%;animation-duration:7s">💗</div>
-<div class="heart" onclick="heartClick()" style="left:75%;animation-duration:10s">💗</div>
+<button class="heart" aria-label="floating heart" onclick="heartClick()" style="left:15%">♥</button>
+<button class="heart" aria-label="floating heart" onclick="heartClick()" style="left:35%;animation-duration:9s;animation-delay:-4s">♥</button>
+<button class="heart" aria-label="floating heart" onclick="heartClick()" style="left:55%;animation-duration:7s;animation-delay:-1s">♥</button>
+<button class="heart" aria-label="floating heart" onclick="heartClick()" style="left:75%;animation-duration:10s;animation-delay:-6s">♥</button>
 
 <div id="heartSecret" class="secret-popup">
-  <span class="popup-close" onclick="closeHeartSecret()">×</span>
-  You found another secret 💗
+  <button class="popup-close" onclick="closeHeartSecret()">×</button>
+  You found another secret ♥
   <br><br>
   You are my favorite person in the universe.
 </div>
@@ -203,9 +399,13 @@ button:hover{
 <div id="page2" class="section">
 <h2>Terms & Conditions</h2>
 <p>By entering this website you agree to:</p>
-<p>• Accept random hugs in the future</p>
-<p>• Allow rematch races</p>
-<p>• Accept to be my wife in the future 😌</p>
+<div class="terms">
+  <p>♥ Accept random hugs in the future</p>
+  <p>♥ Allow rematch races</p>
+  <p>♥ Accept unlimited kisses</p>
+  <p>♥ Be mine forever</p>
+  <p>♥ Accept to be my wife in the future 😌</p>
+</div>
 <button onclick="nextPage('page3')">I Accept</button>
 </div>
 
@@ -215,7 +415,7 @@ button:hover{
 
 <button onclick="toggle('miss')">Click if you miss me</button>
 <div id="miss" class="toggle-img">
-<img src="ME.png">
+<img src="ME.png" alt="Me">
 <p>I miss you too, Kaitlyn. Probably more than you think.</p>
 </div>
 
@@ -231,8 +431,30 @@ button:hover{
 
 <button onclick="toggle('drive')">Click if you passed your driving test</button>
 <div id="drive" class="toggle-img">
-<img src="drivinggf.png">
+<img src="drivinggf.png" alt="Kaitlyn driving">
 <p>Good job Kaitlyn! I'm proud of you 🚗💗</p>
+</div>
+
+<button class="princessBtn" onclick="toggle('princess')">I love you, my princess</button>
+<div id="princess" class="love-message">
+  <p>Today you started university at Yale and idk, it just made everything feel way more real. Being apart from you isn’t easy, even if I know we’re still gonna talk and see each other. I already miss having you around, and I know I’m gonna miss your presence even more while you’re at Yale. More than anything, all of this makes me realize how much I love you and how sure I am about us. Kaitlyn, when I say I don’t see myself ever changing my mind about you, I really mean it. I really do want to spend my whole life with you. I know I could be better at showing you how serious I am about us, and I want to show you that more because losing you is the last thing I want.</p>
+
+  <p>Even the simplest moments with you somehow turn into some of my favorite memories. Our first weekend in Montreal, the Bruno Mars concert, Osheaga, our late-night restaurant dates, going to the movies, the gaming cafe, biking downtown, painting, throwing knives and axes, trying random new things together, our walks, the nights we just play games, or even just the moments where we’re doing nothing and cuddling together, etc.</p>
+
+  <p>I love you more than I know how to put into words, my princess. ❤️</p>
+
+  <!--
+  Cute idea for later: add two photos and one short muted video here.
+  Just replace the three filenames, then remove the comment around this block.
+
+  <div class="memory-gallery">
+    <img src="memory1.jpg" alt="One of our favorite memories">
+    <img src="memory2.jpg" alt="Another favorite memory">
+    <video autoplay muted loop playsinline>
+      <source src="memory-video.mp4" type="video/mp4">
+    </video>
+  </div>
+  -->
 </div>
 
 <br>
@@ -249,11 +471,14 @@ button:hover{
 <!-- PAGE 5 -->
 <div id="page5" class="section">
 <h2>Future Missions</h2>
-<p>☐ Late night walk</p>
-<p>☐ Getting officially married</p>
-<p>☑ Living together happily forever</p>
-<p>☐ Buying a house together</p>
-<p>☐ Rematch race</p>
+<div class="missions">
+  <p class="done">☑ Late-night walk</p>
+  <p>☐ Getting officially married</p>
+  <p>☐ Living together happily forever</p>
+  <p>☐ Getting our own place together</p>
+  <p>☐ Making our own little traditions together</p>
+  <p>☐ Rematch race <small>(idk if I'll ever beat you 'cause you're sooo damn fast)</small></p>
+</div>
 
 <h3>Mini Surprise</h3>
 <audio controls>
@@ -278,7 +503,7 @@ button:hover{
 
 <!-- the end -->
 <div id="page7" class="section">
-<h1>For Kaitlyn 💗</h1>
+<h1>For Kaitlyn ♥</h1>
 
 <audio id="finalMusic" src="TV Girl-Lovers Rock.mp3" loop></audio>
 <br>
@@ -292,11 +517,12 @@ Just a small place on the internet that reminds you how much you mean to me.
 Kaitlyn, I love you more than words can really explain.
 I love talking with you, laughing with you,
 and imagining the future with you.
-And if life lets me choose,
-I would love to spend that future with you.
+And when I think about the life I want,
+I choose a future with you.
 This project may be small,
 but the feelings behind it are not.
-I love you like crazy.
+I love you more than anything,
+my princess.
 ❤️
 </p>
 </div>
@@ -304,7 +530,7 @@ I love you like crazy.
 <!-- ptite page secrete  -->
 <div id="secretPage" class="section">
 <h2>Freshly Pressed Orange Juice☝️</h2>
-<img src="freshlypressed.jpg" class="toggle-img" style="display:block;">
+<img src="freshlypressed.jpg" class="toggle-img" style="display:block;" alt="Freshly pressed orange juice">
 </div>
 
 <!-- ptit bouton secret -->
@@ -330,6 +556,7 @@ function nextPage(page){
   setTimeout(()=>{
     document.getElementById(page).classList.add('active')
     handleFinalMusic(page)
+    window.scrollTo({top:0,behavior:'smooth'})
   },100)
 }
 
@@ -339,6 +566,7 @@ function goBack(){
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
     document.getElementById(prev).classList.add('active')
     handleFinalMusic(prev)
+    window.scrollTo({top:0,behavior:'smooth'})
   }
 }
 
@@ -349,7 +577,9 @@ function toggle(id){
 
 let loveCount=0
 function loveClick(){
-  loveCount++
+  if(loveCount<10){
+    loveCount++
+  }
   document.getElementById("loveCounter").innerHTML=loveCount+" / 10"
   if(loveCount>=10){
     document.getElementById("gameStatus").innerHTML="Good girl 😌"
@@ -360,7 +590,7 @@ function loveClick(){
 let heartCount=0
 function heartClick(){
   heartCount++
-  if(heartCount>=10){ // modifié de 20 à 10
+  if(heartCount>=10){
     document.getElementById("heartSecret").style.display="block"
   }
 }
@@ -421,6 +651,7 @@ function updateTimer(){
 
 setInterval(updateTimer,1000)
 updateTimer()
+
 /* control music */
 function handleFinalMusic(page){
   let music=document.getElementById("finalMusic")
@@ -434,12 +665,12 @@ function handleFinalMusic(page){
 }
 
 // slider de volume
-const volumeSlider = document.getElementById("volumeSlider");
-const finalMusic = document.getElementById("finalMusic");
+const volumeSlider = document.getElementById("volumeSlider")
+const finalMusic = document.getElementById("finalMusic")
 
-volumeSlider.addEventListener("input", () => {
-    finalMusic.volume = volumeSlider.value / 100;
-});
+volumeSlider.addEventListener("input",()=>{
+  finalMusic.volume=volumeSlider.value/100
+})
 </script>
 
 </body>
