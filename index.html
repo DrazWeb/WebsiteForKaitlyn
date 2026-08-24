@@ -285,22 +285,31 @@ button:hover{
 
 /* photo and video gallery */
 .memory-gallery{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
   margin-top:25px;
 }
 
-.memory-gallery img,
-.memory-gallery video{
+.memory-gallery img{
+  display:block;
   width:100%;
-  height:220px;
-  object-fit:cover;
+  height:auto;
+  max-height:70vh;
+  margin:0 auto;
+  object-fit:contain;
   border-radius:15px;
 }
 
 .memory-gallery video{
-  grid-column:1/-1;
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:70vh;
+  margin:0 auto;
+  object-fit:contain;
+  background:#16070c;
+  border-radius:15px;
 }
 
 .secret-popup{
@@ -360,13 +369,6 @@ button:hover{
     padding:25px 22px;
   }
 
-  .memory-gallery{
-    grid-template-columns:1fr;
-  }
-
-  .memory-gallery video{
-    grid-column:auto;
-  }
 }
 </style>
 </head>
@@ -444,10 +446,12 @@ button:hover{
   <p>I love you more than I know how to put into words, my princess. ❤️</p>
 
   <div class="memory-gallery">
-    <img src="cutepic.jpg" alt="One of our favorite memories">
-    <img src="coeurmain.jpg" alt="Another favorite memory">
     <video autoplay muted loop playsinline>
       <source src="cutevideoosheaga.mp4" type="video/mp4">
+    </video>
+    <img src="coeurmain.jpg" alt="One of our favorite memories">
+    <video autoplay muted loop playsinline>
+      <source src="cutevideo2.mp4" type="video/mp4">
     </video>
   </div>
 </div>
